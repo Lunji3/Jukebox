@@ -1,0 +1,343 @@
+/* Polices importées */
+/* bannière */
+@font-face {
+    font-family: 'BAUH';
+    src: url('./ttf/BAUHS93.TTF') format('Truetype');
+}
+
+/* corps */
+@font-face {
+    font-family: 'gils';
+    src: url('./ttf/GILSANUB.TTF') format('Truetype');
+}
+
+h1 {
+    font-family: 'BAUH';
+    font-size: 50px;
+    color: #fff;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+body {
+    font-family: 'gils';
+    background-color: #121212;
+    color: white;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    
+    /* Image de fond */
+    background-image: url('./background.png');
+    background-size: cover;
+    background-position: center;
+}
+
+/* Conteneur principal du jukebox en grille */
+.jukebox-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* Deux colonnes, 1/3 pour la playlist, 2/3 pour le player */
+    grid-template-rows: 100%; /* Une seule ligne pour occuper toute la hauteur */
+    gap: 20px; /* Espacement entre les colonnes */
+    width: 100%;
+    height: 100vh; /* Prend toute la hauteur de l'écran */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Colonne de gauche : Playlist */
+.left-column {
+    background-color: #1c1c1c;
+    overflow-y: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+/* Liste des chansons */
+.song-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.song-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    background-color: #282828;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.song-item:hover {
+    background-color: #3e3e3e;
+}
+
+/* Désactiver une chanson */
+.song-item.disabled {
+    opacity: 0.5; /* Diminuer l'opacité pour indiquer que l'élément est désactivé */
+    pointer-events: none; /* Empêche de cliquer sur l'élément */
+    cursor: not-allowed; /* Change le curseur pour indiquer que l'élément est désactivé */
+}
+
+.song-item:hover:not(.disabled) {
+    background-color: #3e3e3e; /* Changement de couleur au survol si l'élément est actif */
+}
+
+
+/* Numéro de la chanson */
+.song-number {
+    color: #b3b3b3;
+    font-size: 1.2em;
+    margin-right: 15px;
+    width: 30px; /* Largeur fixe pour aligner les numéros */
+    text-align: right; /* Aligner le texte à droite */
+}
+
+/* Vignette de la chanson */
+.song-thumbnail {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    margin-right: 15px;
+    object-fit: cover;
+}
+
+/* Informations sur la chanson */
+.song-info {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Remplit l'espace restant */
+}
+
+.song-info p {
+    font-size: 1em;
+    margin: 0;
+    color: white;
+}
+
+.song-info span {
+    font-size: 0.9em;
+    color: #b3b3b3;
+}
+
+/* Colonne de droite avec CSS Grid */
+.right-column {
+    display: grid;
+    grid-template-rows: 80% 20%; 
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
+}
+
+/* Conteneur supérieur de la colonne droite */
+.right-top-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%; /* Prend toute la hauteur disponible */
+}
+
+/* Conteneur inférieur de la colonne droite */
+.right-bottom-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%; /* Prend toute la hauteur disponible */
+}
+
+/* Conteneur de l'image de l'album */
+.album-cover-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 60%; /* La cover prend 60% de la partie top */
+    margin-bottom: 10px;
+}
+
+.album-cover-container img {
+    width: 100%;
+    max-width: 300px;
+    height: 100%;
+    max-height: 300px;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+/* Détails de la chanson (Titre et artiste) */
+.song-details {
+    text-align: center;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.song-details h2 {
+    font-size: 2em;
+    margin-bottom: 5px;
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.song-details p {
+    font-size: 1.2em;
+    color: #b3b3b3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Barre de progression et temps */
+.progress-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+#progress-bar {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%; /* Prend toute la largeur disponible */
+    height: 8px; /* Épaisseur de la barre */
+    background-color: #505050; /* Couleur de fond de la barre */
+    border-radius: 5px; /* Coins arrondis pour la barre */
+    position: relative;
+    cursor: pointer;
+}
+
+#progress-bar::-webkit-slider-runnable-track {
+    background-color: #1db954; /* Couleur de la partie remplie (vert) */
+    height: 8px; /* Hauteur de la piste */
+    border-radius: 5px; /* Coins arrondis */
+}
+
+#progress-bar::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px; /* Taille du curseur */
+    height: 16px;
+    background-color: #fff; /* Couleur du curseur */
+    border: 2px solid #000; /* Bordure verte autour du curseur */
+    border-radius: 50%; /* Forme du curseur rond */
+    cursor: pointer;
+    position: relative;
+    top: -4px; /* Centre le curseur verticalement */
+}
+
+#progress-bar::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background-color: #fff;
+    border: 2px solid #1db954;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#progress-bar::-moz-range-track {
+    background-color: #555; /* Couleur de la piste non remplie pour Firefox */
+    height: 8px;
+    border-radius: 5px;
+}
+
+#progress-bar::-ms-fill-lower {
+    background-color: #1db954;
+}
+
+#progress-bar::-ms-fill-upper {
+    background-color: #555;
+}
+
+/* Style du temps (temps actuel et durée totale) */
+.current-time, .total-time {
+    font-size: 0.9em;
+    color: #b3b3b3;
+    margin: 0 10px;
+    white-space: nowrap; /* Empêche les sauts de ligne */
+}
+
+/* Boutons de contrôle */
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Espacement entre les boutons */
+}
+
+/* Désactiver un bouton (par exemple après avoir appuyé sur Pause) */
+button.disabled {
+    opacity: 0.5; /* Opacité réduite pour indiquer que le bouton est désactivé */
+    pointer-events: none; /* Empêche toute interaction avec le bouton */
+}
+
+/* Style au survol pour un bouton actif */
+button:hover:not(.disabled) {
+    background-color: #1ed760; /* Change de couleur au survol si le bouton est actif */
+}
+
+/* Style commun pour tous les boutons (cadres carrés) */
+.controls button {
+    width: 80px;
+    height: 80px;
+    background-color: #1db954;
+    border: 5px solid black;
+    border-radius: 15px; /* Coins arrondis */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.controls button:hover {
+    background-color: #1c9242;
+}
+
+/* Icônes à l'intérieur des boutons */
+.controls button .icon {
+    width: 50px;
+    height: 50px;
+    background-color: #fff;
+}
+
+/* Bouton précédent (flèche) */
+#prev-btn .icon {
+    clip-path: polygon(0 50%, 100% 0, 100% 100%); /* Forme de flèche gauche */
+    background-color: black;
+}
+
+/* Bouton lecture (triangle) */
+#play-btn .icon {
+    clip-path: polygon(25% 0%, 100% 50%, 25% 100%); /* Forme de triangle */
+    background-color: black;
+    display: flex;
+}
+
+/* Bouton pause (rectangulaire) */
+#pause-btn .icon {
+    clip-path: polygon(0 35% 0 35%); /* Forme de pause (deux barres) */
+    border-radius: 15px; /* Coins arrondis */
+    background-color: red;
+    display: flex;
+}
+
+/* Bouton suivant (flèche) */
+#next-btn .icon {
+    clip-path: polygon(100% 50%, 0 0, 0 100%); /* Forme de flèche droite */
+    background-color: black;
+}

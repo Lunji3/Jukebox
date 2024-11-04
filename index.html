@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JukeBox</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shorcut icon" href="JB.ico">
+</head>
+<body>
+
+    <div class="jukebox-container">
+        <!-- Colonne gauche : Playlist -->
+        <div class="left-column">
+            <h1>JUKEBOX</h1>
+            <ul class="song-list" id="songs">
+                <!-- Les éléments de la liste des chansons seront injectés ici -->
+            </ul>
+        </div>
+    
+        <!-- Colonne droite : Player -->
+        <div class="right-column">
+            <!-- Conteneur supérieur -->
+            <div class="right-top-column">
+                <div class="album-cover-container">
+                    <img id="album-cover" src="./default.png" alt="Album cover">
+                </div>
+                <div class="song-details">
+                    <h2 id="song-title"></h2>
+                    <p id="artist-name"></p>
+                </div>
+            </div>
+    
+            <!-- Conteneur inférieur -->
+        <div class="right-bottom-column">
+            <!-- Barre de progression avec temps actuel et total -->
+            <div class="progress-container">
+                <span id="current-time" class="current-time">0:00</span>
+                <input type="range" id="progress-bar" value="0" min="0" max="100">
+                <span id="total-duration" class="total-time">0:00</span>
+            </div>
+            <div class="controls">
+                <button id="prev-btn"><div class="icon"></div></button>
+                <button id="play-btn"><div class="icon"></div></button>
+                <button id="pause-btn"><div class="icon"></div></button>
+                <button id="next-btn"><div class="icon"></div></button>
+                </div>            
+            </div>
+        </div>
+    </div>
+    
+
+    <script src="script.js"></script>
+</body>
+</html>
